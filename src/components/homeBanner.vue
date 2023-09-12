@@ -8,18 +8,37 @@
       <p class="mb-5">
         這裡，我們讓你輕鬆擺脫尺標的束縛，將螢幕轉變成你的新測量工具。無論你是工程師、設計師、或只是隨身需要一把尺的人，我們都在這裡，為你提供最簡單、最方便的解決方案。
       </p>
-
-      <a
-        href="#correction"
-        title="Start expoloring"
-        class="peer mb-1 inline-block rounded bg-primary px-3 py-2 font-bold text-zinc-600 transition-colors hover:bg-[color:var(--color-primary-light-1)] hover:text-stone-700"
-      >
-        開始
-      </a>
-      <span class="p-3 text-sm peer-hover:text-white">先來校正螢幕吧</span>
+      <template v-if="isNew">
+        <a
+          href="#correction"
+          title="Start expoloring"
+          class="peer mb-1 inline-block rounded bg-primary px-3 py-2 font-bold text-zinc-600 transition-colors hover:bg-[color:var(--color-primary-light-1)] hover:text-stone-700"
+        >
+          開始
+        </a>
+        <span class="p-3 text-sm peer-hover:text-white">先來校正螢幕吧</span>
+      </template>
+      <template v-else>
+        <a
+          href="#sizing"
+          title="Start expoloring"
+          class="peer mb-1 inline-block rounded bg-primary px-3 py-2 font-bold text-zinc-600 transition-colors hover:bg-[color:var(--color-primary-light-1)] hover:text-stone-700"
+        >
+          開始
+        </a>
+        <span class="p-3 text-sm peer-hover:text-white">歡迎回來</span>
+      </template>
     </article>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { useScreenSizeStore } from '@/stores/screenInch';
+import { computed } from 'vue';
+const screenSizeStore = useScreenSizeStore();
+/** 檢測是否為第一次造訪 */
+const isNew = computed(() => !screenSizeStore.lastScreenInch);
+</script>
 
 <style scoped lang="postcss">
 .parallax {

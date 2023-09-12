@@ -9,12 +9,14 @@ initNetworkStatus();
   <AddToHome />
   <header class="sticky top-0 z-20 bg-[color:var(--color-header)]">
     <div class="container mx-auto flex">
-      <h1 class="brand mr-auto text-white">RULER BREAKER</h1>
-      <nav>
+      <router-link to="/" class="mr-auto">
+        <h1 class="brand text-white">RULER BREAKER</h1>
+      </router-link>
+      <nav class="flex items-center">
         <a href="#home" class="home-nav-link">Home</a>
-        <a href="#start" class="home-nav-link">Start</a>
-        <a href="#about" class="home-nav-link">About</a>
-        <a href="#contact" class="home-nav-link">Contact</a>
+        <a href="#correction" class="home-nav-link">校正</a>
+        <a href="#sizing" class="home-nav-link">測量</a>
+        <!-- <a href="#contact" class="home-nav-link"></a> -->
       </nav>
     </div>
   </header>
