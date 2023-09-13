@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto overflow-x-scroll">
     <article class="py-5">
       <div class="my-10 max-w-lg">
         <strong>定義畫面的比例</strong>

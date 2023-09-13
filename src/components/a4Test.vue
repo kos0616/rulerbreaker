@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto overflow-x-scroll">
     <article class="py-10">
       <div class="my-10 max-w-lg">
         <strong>測量兩點間的距離</strong>
