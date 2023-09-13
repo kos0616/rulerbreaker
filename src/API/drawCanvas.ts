@@ -16,12 +16,17 @@ export default () => {
     }
   });
 
+  const clear = (domCanvas: HTMLElement) => {
+    domCanvas.querySelector('canvas')?.remove();
+  };
+
   const init = (domCanvas: HTMLElement) => {
+    clear(domCanvas);
     const canvas = document.createElement('canvas');
     canvas.className = 'absolute left-0 top-0 border';
-    console.log(domCanvas);
     const width = domCanvas.style.width;
     const height = domCanvas.style.height;
+    if (!width && !height) return;
     canvas.width = parseFloat(width);
     canvas.height = parseFloat(height);
 
@@ -119,5 +124,5 @@ export default () => {
     }
   };
 
-  return { init };
+  return { init, clear };
 };

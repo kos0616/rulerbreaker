@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto overflow-x-scroll">
     <article class="py-10">
-      <div class="my-10 max-w-lg">
+      <div class="mb-20 mt-10 max-w-lg">
         <strong>測量兩點間的距離</strong>
         <h2 class="text-white">點對點測量</h2>
         <p class="mb-10">
@@ -14,16 +14,20 @@
           <li>開始測量您所需的物體，無需尺標！</li>
         </ol>
       </div>
+
       <figure
         ref="REF_A4"
         class="relative mx-auto block text-center"
         data-width="210"
         data-height="297"
       >
-        <!-- <canvas
-          id="myCanvas"
-          class="absolute bottom-0 left-0 right-0 top-0 h-full w-full border"
-        ></canvas> -->
+        <button
+          @click="handleReset"
+          type="button"
+          class="absolute -top-2 left-0 -translate-y-full rounded border px-3 py-1 transition-colors hover:bg-slate-200 hover:text-gray-500"
+        >
+          重設
+        </button>
         <img
           src="https://i.imgur.com/wpB6I3l.jpeg"
           class="mx-auto h-full max-h-none w-full max-w-none"
@@ -42,6 +46,12 @@ import mitt from '@/API/mitt';
 import drawCanvas from '@/API/drawCanvas';
 const screenSizeStore = useScreenSizeStore();
 
+const { init } = drawCanvas();
+
+const handleReset = () => {
+  init(REF_A4.value as HTMLElement);
+};
+
 /** 檢測是否為第一次造訪 */
 const isOld = computed(() => !!screenSizeStore.lastScreenInch);
 
@@ -50,15 +60,15 @@ const { setToReal } = useRealImage();
 const REF_A4 = ref<HTMLElement | null>(null);
 
 const handleCorrection = () => {
-  if (REF_A4.value) setToReal(REF_A4.value);
+  if (REF_A4.value) {
+    setToReal(REF_A4.value);
+    init(REF_A4.value as HTMLElement);
+  }
 };
 
 mitt.on('correction', handleCorrection);
 
-const { init } = drawCanvas();
-
 onMounted(() => {
   if (isOld.value) handleCorrection();
-  init(REF_A4.value as HTMLElement);
 });
 </script>
