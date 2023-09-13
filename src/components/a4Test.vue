@@ -16,6 +16,26 @@
       </div>
 
       <figure
+        v-if="IS_TEST"
+        ref="REF_TEETH"
+        class="relative mx-auto mb-20 block text-center"
+        data-width="210"
+        data-height="137"
+      >
+        <button
+          @click="handleReset"
+          type="button"
+          class="absolute -top-2 left-0 -translate-y-full rounded border px-3 py-1 transition-colors hover:bg-slate-200 hover:text-gray-500"
+        >
+          重設
+        </button>
+        <img
+          src="https://graftondentalcare.com/wp-content/uploads/2018/01/The-Science-of-Modern-Dental-X-Rays-768x501.jpg.webp"
+          class="mx-auto h-full max-h-none w-full max-w-none"
+        />
+      </figure>
+
+      <figure
         ref="REF_A4"
         class="relative mx-auto block text-center"
         data-width="210"
@@ -44,12 +64,16 @@ import useRealImage from '@/API/setImageToReal';
 import { useScreenSizeStore } from '@/stores/screenInch';
 import mitt from '@/API/mitt';
 import drawCanvas from '@/API/drawCanvas';
+
+const IS_TEST = true;
+
 const screenSizeStore = useScreenSizeStore();
 
 const { init } = drawCanvas();
 
 const handleReset = () => {
   init(REF_A4.value as HTMLElement);
+  init(REF_TEETH.value as HTMLElement);
 };
 
 /** 檢測是否為第一次造訪 */
@@ -58,11 +82,16 @@ const isOld = computed(() => !!screenSizeStore.lastScreenInch);
 const { setToReal } = useRealImage();
 
 const REF_A4 = ref<HTMLElement | null>(null);
+const REF_TEETH = ref<HTMLElement | null>(null);
 
 const handleCorrection = () => {
   if (REF_A4.value) {
     setToReal(REF_A4.value);
     init(REF_A4.value as HTMLElement);
+  }
+  if (REF_TEETH.value) {
+    setToReal(REF_TEETH.value);
+    init(REF_TEETH.value as HTMLElement);
   }
 };
 
