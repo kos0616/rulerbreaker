@@ -16,7 +16,6 @@
       </div>
 
       <figure
-        v-if="IS_TEST"
         ref="REF_TEETH"
         class="relative mx-auto mb-20 block text-center"
         data-width="210"
@@ -64,8 +63,6 @@ import useRealImage from '@/API/setImageToReal';
 import { useScreenSizeStore } from '@/stores/screenInch';
 import mitt from '@/API/mitt';
 import drawCanvas from '@/API/drawCanvas';
-
-const IS_TEST = true;
 
 const screenSizeStore = useScreenSizeStore();
 
