@@ -1,1 +1,1 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/NFCAT/sw.js', { scope: '/NFCAT/' })})}
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/rulerbreaker/sw.js', { scope: '/rulerbreaker/' })})}
