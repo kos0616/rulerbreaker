@@ -14,13 +14,19 @@
           <li>開始測量您所需的物體，無需尺標！</li>
         </ol>
       </div>
-      <figure class="text-center">
+      <figure
+        ref="REF_A4"
+        class="relative mx-auto block text-center"
+        data-width="210"
+        data-height="297"
+      >
+        <!-- <canvas
+          id="myCanvas"
+          class="absolute bottom-0 left-0 right-0 top-0 h-full w-full border"
+        ></canvas> -->
         <img
-          ref="REF_A4"
           src="https://i.imgur.com/wpB6I3l.jpeg"
-          data-width="210"
-          data-height="297"
-          class="mx-auto max-h-none max-w-none"
+          class="mx-auto h-full max-h-none w-full max-w-none"
         />
         <figcaption>210mm x 297mm</figcaption>
       </figure>
@@ -33,7 +39,7 @@ import { onMounted, ref, computed } from 'vue';
 import useRealImage from '@/API/setImageToReal';
 import { useScreenSizeStore } from '@/stores/screenInch';
 import mitt from '@/API/mitt';
-
+import drawCanvas from '@/API/drawCanvas';
 const screenSizeStore = useScreenSizeStore();
 
 /** 檢測是否為第一次造訪 */
@@ -49,7 +55,10 @@ const handleCorrection = () => {
 
 mitt.on('correction', handleCorrection);
 
+const { init } = drawCanvas();
+
 onMounted(() => {
   if (isOld.value) handleCorrection();
+  init(REF_A4.value as HTMLElement);
 });
 </script>

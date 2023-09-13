@@ -46,7 +46,6 @@
             </button>
 
             <input
-              id="screenInch"
               name="screenInch"
               v-model="screenInch"
               type="number"

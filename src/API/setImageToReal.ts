@@ -1,5 +1,6 @@
 import { useScreenSizeStore } from '@/stores/screenInch';
 import { computed } from 'vue';
+import { mmToPx } from '@/lib/mmToPx';
 
 export default () => {
   const screenSizeStore = useScreenSizeStore();
@@ -39,28 +40,3 @@ export default () => {
 
   return { increment, screenInch, setToReal };
 };
-
-function mmToPx(screenInch: number, mm: number) {
-  // apple will be 2, but gets error
-  const dpr = 1 || window.devicePixelRatio;
-  const inch = 25.4; //1inch = 25.4 mm
-  // gw2780 = 27
-  // not always 96, 27 is screen size in inch
-  const ppi = getPPI(window.screen.width, window.screen.height, screenInch);
-  return ((mm / inch) * ppi) / dpr;
-}
-
-function getPPI(hRes: number, vRes: number, diagSize: number) {
-  const diagRes = Math.sqrt(Math.pow(hRes, 2) + Math.pow(vRes, 2));
-  return Math.round(diagRes / diagSize);
-}
-
-// function pxToMm(screenInch, px) {
-//   // apple will be 2, but gets error
-//   var dpr = 1 || window.devicePixelRatio;
-//   var inch = 25.4; //1inch = 25.4 mm
-//   // gw2780 = 27
-//   // not always 96, 27 is screen size in inch
-//   var ppi = getPPI(window.screen.width, window.screen.height, screenInch);
-//   return (px * inch * dpr) / ppi;
-// }
