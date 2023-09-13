@@ -100,6 +100,7 @@
 import { onMounted, ref, computed } from 'vue';
 import useRealImage from '@/API/setImageToReal';
 import { useScreenSizeStore } from '@/stores/screenInch';
+import mitt from '@/API/mitt';
 
 const screenSizeStore = useScreenSizeStore();
 
@@ -120,6 +121,7 @@ const handleCorrection = () => {
   if (REF_CARD.value && REF_NT100.value) {
     setToReal(REF_CARD.value);
     setToReal(REF_NT100.value);
+    mitt.emit('correction');
   }
 };
 

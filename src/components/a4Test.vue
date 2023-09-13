@@ -32,6 +32,7 @@
 import { onMounted, ref, computed } from 'vue';
 import useRealImage from '@/API/setImageToReal';
 import { useScreenSizeStore } from '@/stores/screenInch';
+import mitt from '@/API/mitt';
 
 const screenSizeStore = useScreenSizeStore();
 
@@ -43,10 +44,10 @@ const { setToReal } = useRealImage();
 const REF_A4 = ref<HTMLElement | null>(null);
 
 const handleCorrection = () => {
-  if (REF_A4.value) {
-    setToReal(REF_A4.value);
-  }
+  if (REF_A4.value) setToReal(REF_A4.value);
 };
+
+mitt.on('correction', handleCorrection);
 
 onMounted(() => {
   if (isOld.value) handleCorrection();
