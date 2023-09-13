@@ -25,7 +25,7 @@
               v-model="screenInch"
               type="number"
               min="0"
-              max="85"
+              max="200"
               step="0.1"
               class="self-stretch border-y bg-transparent px-3"
               required
@@ -50,7 +50,7 @@
               v-model="screenInch"
               type="number"
               min="0"
-              max="85"
+              max="200"
               step="0.1"
               class="self-stretch border-y bg-transparent px-3 text-center"
               required
