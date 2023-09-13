@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'node:url';
 import loadVersion from 'vite-plugin-package-version';
-import { VitePWA } from 'vite-plugin-pwa';
+// import { VitePWA } from 'vite-plugin-pwa';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -10,9 +10,9 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     vue(),
     loadVersion(),
-    VitePWA({
-      manifest: false
-    })
+    // VitePWA({
+    //   manifest: false
+    // })
   ],
   server: { host: '0.0.0.0' },
   resolve: {
